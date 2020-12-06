@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="container-fluid" *ngIf="!isUserSessionValid">
+    <div class=" mx-auto login-block" >
+        <div class="row ">
+            <div class=" col-md-12 project_name">School App</div>
+            <div class=" col-md-12 title">Login</div>
+        </div>
+        <form class="login-form border-cls" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+            <div class="row form-group has-error">
+                <div class="col-md-8 mx-auto">
+                    <input type="text" class="form-control" autocomplete="off" formControlName="email"
+                        placeholder="Email">
+                    <small *ngIf="loginFormFields.email" class="alerterror">
+                        <span class="alert-error">{{loginFormFields.email}}</span>
+                    </small>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-8 mx-auto">
+                    <input type="password" class="form-control" autocomplete="off" formControlName="password"
+                        placeholder="password">
+                    <small *ngIf="loginFormFields.password" class="alerterror">
+                        <span class="alert-error">{{loginFormFields.password}}</span>
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-8 mx-auto forgot-password">
+                <a href="">Forgot password</a>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4 mx-auto">
+                    <button type="submit" class="btn btn-block btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="footer-text">&copy; All rights reserved | 2020</div>
+    </div>
+</div>

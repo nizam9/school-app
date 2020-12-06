@@ -8,13 +8,14 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeGuard } from '../shared/services/auth-guard.service';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [IndexComponent, DashboardComponent, TeachersComponent],
   imports: [
     CommonModule,
     IndexRoutingModule,
-    SharedModule
+    SharedModule , FormsModule, ReactiveFormsModule
   ],
   providers: [HomeGuard]
 })

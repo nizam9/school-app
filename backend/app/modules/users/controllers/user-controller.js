@@ -25,7 +25,7 @@ UserCtrl.login = (req, res, next) => {
 
 UserCtrl.error = (req, res) => {
     console.log('inside errorrrrrrrrrrrrrr')
-    res.send({ status: 401, message: 'Invalid Credentials' })
+    res.send({ status: 401, message: 'Invalid Credentials 123' })
 }
 
 
@@ -34,6 +34,7 @@ UserCtrl.register = (req, res) => {
     if(req.body.type === 'admin'){
         var userDet = new userSchema({
             name: 'admin',
+            email: 'admin@gmail.com',
             password: 'admin'
         });
     }

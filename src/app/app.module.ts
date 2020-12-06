@@ -8,15 +8,16 @@ import { NotifierModule } from "angular-notifier";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { customNotifierOptions } from '../app/shared/angular-notifier';
+import { CustomValidations } from './shared/custom/validations/validations';
+import { LoginComponent } from './login/login.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,7 @@ import { customNotifierOptions } from '../app/shared/angular-notifier';
     ReactiveFormsModule,
     NotifierModule.withConfig(customNotifierOptions)
   ],
-  providers: [],
+  providers: [CustomValidations],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

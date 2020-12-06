@@ -31,12 +31,18 @@ UserCtrl.error = (req, res) => {
 
 UserCtrl.register = (req, res) => {
     console.log('inside register', req.body);
-    const userDet = new userSchema({
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-        password: req.body.password
-    });
+    if(req.body.type === 'admin'){
+        var userDet = new userSchema({
+            name: 'admin',
+            password: 'admin'
+        });
+    }
+    // const userDet = new userSchema({
+    //     name: req.body.name,
+    //     email: req.body.email,
+    //     phone: req.body.phone,
+    //     password: req.body.password
+    // });
     userDet.save((error, result) => {
         if (result) {
             res.send({ code: 200, result: result, message: 'User Profile Created Successfully' })

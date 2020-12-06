@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   constructor(private _notifier:NotifierService) { }
 
   ngOnInit(): void {
-    this._notifier.notify("success" , 'logged in');
+    // this._notifier.notify("success" , 'logged in');
   }
 
 }

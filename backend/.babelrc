@@ -1,0 +1,11 @@
+// // .babelrc
+// {
+//     "presets": ["@babel/preset-env"]
+// }
+// {
+//     "presets":["env"]
+// }
+
+{
+    "presets":["env"]
+}

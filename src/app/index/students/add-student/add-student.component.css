@@ -1,0 +1,22 @@
+.legend-cls {
+    background-color: #ece4e2;
+    color: var(--lightblack);
+    font-size: 16px;
+    padding-left: 10px;
+    
+    /* text-align: center; */
+}
+.other-det{
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--blue);
+}
+
+.button-section{
+    display: flex;
+    justify-content: center;
+}
+/* .form-group.required .control-label:after {
+    content:"*";
+    color:red !important;
+  } */

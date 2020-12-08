@@ -1,0 +1,8 @@
+.section-1{
+    height: 80px;
+    border-bottom: 1px solid var(--blue);
+}
+
+.section-2 {
+    height: calc(100vh - 140px);
+}

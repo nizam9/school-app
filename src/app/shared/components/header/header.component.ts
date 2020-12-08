@@ -10,9 +10,19 @@ import { NotifierService } from 'angular-notifier';
 export class HeaderComponent implements OnInit {
 
   constructor(private _router: Router,
-    private _notifier: NotifierService,) { }
+    private _notifier: NotifierService,) {
+
+  }
+
+  public showExtras = false;
+
 
   ngOnInit(): void {
+
+  }
+
+  onShowExtras() {
+    this.showExtras = !this.showExtras;
   }
 
   logout() {
@@ -20,7 +30,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem("expires_at");
     this._router.navigate(['/']);
-    this._notifier.notify('success' , 'Logged out')
+    this._notifier.notify('success', 'Logged out')
   }
 
 }

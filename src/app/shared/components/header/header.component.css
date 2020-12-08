@@ -1,0 +1,57 @@
+
+.nav-bar{
+    display: flex;
+}
+
+.project-title{
+    font-size: 25px;
+    color: var(--blue);
+    position: relative;
+    top: 9px;
+    left: 10px;
+}
+
+.profile{
+    position: absolute;
+    right: 5%;
+    top: 2%;
+}
+
+.profile img {
+    height: 40px;
+    width: 40px;
+}
+.down-arrow{
+    position: relative;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.extras{
+    background-color: var(--smoke);
+    height: 120px;
+    right: -43px;
+    width: 160px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+.extras ul {
+    position: relative;
+    right: 10%;
+    top: 7%;
+    list-style: none;
+    
+}
+
+.extras ul li {
+    cursor: pointer;
+    color: var(--lightblack);
+    font-size: 14px !important;
+    line-height: 25px;
+}
+.extras ul li:hover {
+    color: var(--blue);
+}

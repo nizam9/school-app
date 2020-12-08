@@ -17,11 +17,6 @@
     border-radius: 5px;
     padding: 10% 0 5% 0;
 }
-input,
-button {
-    box-shadow: none !important;
-    outline: none !important;
-}
 
 .forgot-password {
     margin-bottom: 10px;
@@ -29,7 +24,7 @@ button {
 .project_name {
     font-size: 40px !important;
     text-align: center;
-    color: #007bff;
+    color: var(--blue);
 }
 .title {
     font-size: 20px !important;
@@ -39,4 +34,10 @@ button {
     position: fixed;
     bottom: 7%;
     left: 43%;
+}
+.alert-error {
+    color: var(--red);
+    font-size: 10px;
+    position: absolute;
+    left: 25px;
 }

@@ -15,7 +15,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
 
 input,
@@ -34,7 +34,7 @@ select {
 }
 ::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
@@ -44,4 +44,52 @@ select {
   content: "*";
   color: red;
   padding-left: 5px;
+}
+
+::placeholder{
+  font-size: 11px;
+  color: var(--lightblack);
+}
+
+.alerterror{
+  position: absolute;
+  margin-left: 5px;
+  color: red;
+}
+
+/* popup  design*/
+.modal {
+  padding: 0 !important;
+}
+.modal .modal-large{
+  width: 90%;
+  max-width: none;
+  height: 90%;
+  border: 1px solid var(--lightblack);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.modal .modal-medium{
+  width: 50%;
+  max-width: none;
+  height: 60%;
+  border: 1px solid var(--lightblack);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.modal .modal-small{
+  width: 30%;
+  max-width: none;
+  height: 60%;
+  border: 1px solid var(--lightblack);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.modal .modal-content {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+.modal .modal-body {
+  overflow-y: auto;
 }

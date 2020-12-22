@@ -12,10 +12,7 @@ export class HomeGuard implements CanActivate {
         private _authService: AuthService,
     ) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        console.log(this._authService.isLoggedIn(), 'this._authService.isLoggedIn()');
-        console.log(this._authService.getToken(), 'this._authService.getToken()');
         if (this._authService.getToken() && this._authService.isLoggedIn()) {
-            console.log('in auth guard')
             return true;
         } else {
             this.router.navigate(['/']);

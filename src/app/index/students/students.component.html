@@ -3,11 +3,11 @@
         <div class="col-sm-4">
             <form>
                 <div class="input-group search-box">
-                    <input type="text" class="form-control" placeholder="Search Student">
+                    <input type="text" class="form-control" placeholder="Search Student" [ngModel]="searchModel"
+                        [ngModelOptions]="{standalone: true}" (ngModelChange)="studentSearch($event)">
                     <div class="input-group-append">
-                        <span class="input-group-text search-icon" (click)="studentSearch()"><svg width="1em"
-                                height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
+                        <span class="input-group-text search-icon"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                                class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
                                 <path fill-rule="evenodd"
@@ -19,48 +19,46 @@
         </div>
         <div class=" title-text-btns">
             <button type="button" class="btn btn-light add-student-btn" data-toggle="modal"
-                data-target=".add-new-stud-modal">Add new Student</button>
+                data-target=".add-new-stud-modal" (click)="openPopup('addnewStud')">Add new Student</button>
             <button type="button" class="btn btn-light">Switch to List View</button>
         </div>
     </div>
 </div>
 <div class="section-2">
-    <div class="user-card">
+    <div class="error-fetching" *ngIf="!(studentsList.lenght > 0)"> {{studentsFetchError}} </div>
+    <div class="user-card" *ngFor="let stud of studentsList">
         <div class="profile">
             <div class="student-picture">
                 <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
                     alt="user-image">
             </div>
             <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
+                <div class="stud-name">{{stud.firstname}} {{stud.lastname}}</div>
+                <div>Class / Section : {{stud.class}} - {{stud.section}}</div>
+                <div>{{stud.rollNumber}} | {{stud.age}}Y old</div>
             </div>
         </div>
         <div class="personal-details">
             <div class="parent-details">
                 <p>
-                    Father <span>: Khader Basha</span>
+                    Father <span>: {{stud.fathername}}</span>
                 </p>
                 <p>
-                    Mother <span>: Shahina</span>
+                    Mother <span>: {{stud.mothername}}</span>
                 </p>
                 <p>
-                    Mobile <span>: +91-8985977465</span>
+                    Mobile <span>: {{stud.father_mobile}} </span>
                 </p>
                 <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
+                    DOB <span>: {{stud.dob | date:'dd-MMM-yyyy'}}</span>
                 </p>
                 <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
+                    Address <span>: {{stud.address}}</span>
                 </p>
             </div>
         </div>
         <div class="easy-links">
-            <a href="">Fee Details</a>
+            <a data-toggle="modal" data-target=".fee-details-modal" (click)="openPopup('feeDetails' , stud._id)">Fee Details</a>
             <a href="">Teacher Details</a>
             <a href="">Attendance</a>
             <a href="">Exams</a>
@@ -72,295 +70,14 @@
             <button type="button" class="btn btn-light">View Complete Details</button>
         </div>
     </div>
-    <div class="user-card">
-        <div class="profile">
-            <div class="student-picture">
-                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                    alt="user-image">
-            </div>
-            <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
-            </div>
-        </div>
-        <div class="personal-details">
-            <div class="parent-details">
-                <p>
-                    Father <span>: Khader Basha</span>
-                </p>
-                <p>
-                    Mother <span>: Shahina</span>
-                </p>
-                <p>
-                    Mobile <span>: +91-8985977465</span>
-                </p>
-                <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
-                </p>
-                <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
-                </p>
-            </div>
-        </div>
-        <div class="easy-links">
-            <a href="">Fee Details</a>
-            <a href="">Teacher Details</a>
-            <a href="">Attendance</a>
-            <a href="">Exams</a>
-            <a href="">Circular</a>
-            <a href="">Notifications</a>
-        </div>
-        <div class="actions">
-            <button type="button" class="btn btn-light add-student-btn">Modify details</button>
-            <button type="button" class="btn btn-light">View Complete Details</button>
-        </div>
-    </div>
-    <div class="user-card">
-        <div class="profile">
-            <div class="student-picture">
-                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                    alt="user-image">
-            </div>
-            <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
-            </div>
-        </div>
-        <div class="personal-details">
-            <div class="parent-details">
-                <p>
-                    Father <span>: Khader Basha</span>
-                </p>
-                <p>
-                    Mother <span>: Shahina</span>
-                </p>
-                <p>
-                    Mobile <span>: +91-8985977465</span>
-                </p>
-                <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
-                </p>
-                <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
-                </p>
-            </div>
-        </div>
-        <div class="easy-links">
-            <a href="">Fee Details</a>
-            <a href="">Teacher Details</a>
-            <a href="">Attendance</a>
-            <a href="">Exams</a>
-            <a href="">Circular</a>
-            <a href="">Notifications</a>
-        </div>
-        <div class="actions">
-            <button type="button" class="btn btn-light add-student-btn">Modify details</button>
-            <button type="button" class="btn btn-light">View Complete Details</button>
-        </div>
-    </div>
-    <div class="user-card">
-        <div class="profile">
-            <div class="student-picture">
-                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                    alt="user-image">
-            </div>
-            <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
-            </div>
-        </div>
-        <div class="personal-details">
-            <div class="parent-details">
-                <p>
-                    Father <span>: Khader Basha</span>
-                </p>
-                <p>
-                    Mother <span>: Shahina</span>
-                </p>
-                <p>
-                    Mobile <span>: +91-8985977465</span>
-                </p>
-                <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
-                </p>
-                <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
-                </p>
-            </div>
-        </div>
-        <div class="easy-links">
-            <a href="">Fee Details</a>
-            <a href="">Teacher Details</a>
-            <a href="">Attendance</a>
-            <a href="">Exams</a>
-            <a href="">Circular</a>
-            <a href="">Notifications</a>
-        </div>
-        <div class="actions">
-            <button type="button" class="btn btn-light add-student-btn">Modify details</button>
-            <button type="button" class="btn btn-light">View Complete Details</button>
-        </div>
-    </div>
-    <div class="user-card">
-        <div class="profile">
-            <div class="student-picture">
-                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                    alt="user-image">
-            </div>
-            <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
-            </div>
-        </div>
-        <div class="personal-details">
-            <div class="parent-details">
-                <p>
-                    Father <span>: Khader Basha</span>
-                </p>
-                <p>
-                    Mother <span>: Shahina</span>
-                </p>
-                <p>
-                    Mobile <span>: +91-8985977465</span>
-                </p>
-                <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
-                </p>
-                <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
-                </p>
-            </div>
-        </div>
-        <div class="easy-links">
-            <a href="">Fee Details</a>
-            <a href="">Teacher Details</a>
-            <a href="">Attendance</a>
-            <a href="">Exams</a>
-            <a href="">Circular</a>
-            <a href="">Notifications</a>
-        </div>
-        <div class="actions">
-            <button type="button" class="btn btn-light add-student-btn">Modify details</button>
-            <button type="button" class="btn btn-light">View Complete Details</button>
-        </div>
-    </div>
-    <div class="user-card">
-        <div class="profile">
-            <div class="student-picture">
-                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                    alt="user-image">
-            </div>
-            <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
-            </div>
-        </div>
-        <div class="personal-details">
-            <div class="parent-details">
-                <p>
-                    Father <span>: Khader Basha</span>
-                </p>
-                <p>
-                    Mother <span>: Shahina</span>
-                </p>
-                <p>
-                    Mobile <span>: +91-8985977465</span>
-                </p>
-                <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
-                </p>
-                <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
-                </p>
-            </div>
-        </div>
-        <div class="easy-links">
-            <a href="">Fee Details</a>
-            <a href="">Teacher Details</a>
-            <a href="">Attendance</a>
-            <a href="">Exams</a>
-            <a href="">Circular</a>
-            <a href="">Notifications</a>
-        </div>
-        <div class="actions">
-            <button type="button" class="btn btn-light add-student-btn">Modify details</button>
-            <button type="button" class="btn btn-light">View Complete Details</button>
-        </div>
-    </div>
-    <div class="user-card">
-        <div class="profile">
-            <div class="student-picture">
-                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                    alt="user-image">
-            </div>
-            <div class="student-det">
-                <div class="stud-name">Nizamuddin Shaik</div>
-                <div>Class / Section : 10 - 2</div>
-                <div>1017114712 | 17Y old</div>
-            </div>
-        </div>
-        <div class="personal-details">
-            <div class="parent-details">
-                <p>
-                    Father <span>: Khader Basha</span>
-                </p>
-                <p>
-                    Mother <span>: Shahina</span>
-                </p>
-                <p>
-                    Mobile <span>: +91-8985977465</span>
-                </p>
-                <p>
-                    Email <span>: nizamuddin407@gmail.com</span>
-                </p>
-                <p>
-                    DOB <span>: 15-DEC-1994</span>
-                </p>
-                <p>
-                    Address <span>: B-13-280,Khajanagar,Buchireddypalem , nellore , 524305</span>
-                </p>
-            </div>
-        </div>
-        <div class="easy-links">
-            <a href="">Fee Details</a>
-            <a href="">Teacher Details</a>
-            <a href="">Attendance</a>
-            <a href="">Exams</a>
-            <a href="">Circular</a>
-            <a href="">Notifications</a>
-        </div>
-        <div class="actions">
-            <button type="button" class="btn btn-light add-student-btn">Modify details</button>
-            <button type="button" class="btn btn-light">View Complete Details</button>
-        </div>
-    </div>
+
 
 </div>
 
-
+<!-- Popup for Adding Studnet details - registration form -->
 <div class="modal fade add-new-stud-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    aria-labelledby="myLargeModalLabel" aria-hidden="true" #addStududentPopup>
+    <div class="modal-dialog modal-large">
 
         <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
         <div class="modal-content">
@@ -369,13 +86,25 @@
                 <h4 class="modal-title">Add Student</h4>
                 <button type="button" class="close" data-dismiss="modal">Close</button>
             </div>
-            <div class="modal-body">
-                <!-- <app-student-details></app-student-details> -->
+            <div class="modal-body" *ngIf="isAddStudVismceible">
                 <app-add-student></app-add-student>
             </div>
-            <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade fee-details-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true" #feeDetailsPopup>
+    <div class="modal-dialog modal-medium">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Fee Details</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeFeePopup()">Close</button>
+            </div>
+            <div class="modal-body" *ngIf="isFeeDetailsVisible">
+                <app-fee-details [studentId]="studentId" [closedFeePopup]="closedFeePopup"></app-fee-details>
+            </div>
         </div>
     </div>
 </div>

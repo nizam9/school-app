@@ -4,13 +4,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start_HMR": "ng serve --hmr",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "client_HMR": "npm run start_HMR",
     "client": "npm run start",
     "server": "npm run server --prefix backend",
-    "dev": "concurrently \"npm run client\" \"npm run server\""
+    "stage": "concurrently \"npm run client\" \"npm run server\"",
+    "dev": "concurrently \"npm run client_HMR\" \"npm run server\""
   },
   "private": true,
   "dependencies": {

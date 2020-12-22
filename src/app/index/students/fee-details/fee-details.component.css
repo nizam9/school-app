@@ -1,0 +1,36 @@
+table {
+    border: 1px solid #dee2e6;
+}
+.stud_name{
+    font-size: 16px;
+    text-align: center;
+    margin-top: -10px;
+    color: var(--blue);
+    font-weight: 500;
+}
+tbody {
+    text-align: center;
+}
+.fee-transactions{
+    font-size: 11px;
+    cursor: pointer;
+    color: var(--blue);
+    display: flex;
+    justify-content: flex-end;
+}
+.edit-fees a{
+    color: var(--blue);
+    text-decoration: underline;
+    cursor: pointer;
+}
+td span svg {
+    margin: 5px 5px 0 0 ;
+    cursor: pointer;
+}
+.update-valid-error{
+    font-size: 11px;
+    color: var(--red);
+    position: relative;
+    bottom: 15px;
+    left: 10px;
+}

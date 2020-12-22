@@ -40,8 +40,9 @@ app.use(passport.session());
 require('./services/passport')(passport);
 
 // Your Routings here
-import UserRoutes from './app/modules/users/routes/user-route';
-app.use('/api/v1', [UserRoutes])
+import UserRoutes from './app/modules/routes/user-route';
+import StudentRoutes from './app/modules/routes/student-route';
+app.use('/api/v1', [UserRoutes, StudentRoutes]);
 
 app.use((err, req, res, next) => {
 	res.locals.error = err;

@@ -1,6 +1,6 @@
 // import passport from 'passport';
 const LocalStrategy = require('passport-local').Strategy;
-import UserSchema from '../app/modules/users/models/user-model';
+import UserSchema from '../app/modules/models/user-model';
 
 module.exports = function (passport) {
     passport.use(

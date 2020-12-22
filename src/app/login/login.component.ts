@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { NotifierService } from "angular-notifier";
 import { FormFields } from '../shared/custom/validations/formFields';
-import { ValidationMessages } from '../shared/custom/validations/login-validation-messages';
+import { ValidationMessages } from '../shared/custom/validations/validation-messages';
 import { CustomValidations } from '../shared/custom/validations/validations';
 import { AuthService } from '../shared/services/auth.service';
 import { LoginService } from './login.service';

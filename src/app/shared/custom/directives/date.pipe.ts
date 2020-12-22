@@ -8,6 +8,7 @@ export class DatePipe implements PipeTransform {
 
 
     transform(date) {
+        console.log(date , 'datedate')
         return String(`${date.day}-${date.month}-${date.year}`);
     }
 }

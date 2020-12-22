@@ -39,7 +39,7 @@
 }
 .user-card {
     display: inline-block;
-    height: 360px;
+    height: 325px;
     width: 270px;
     /* width: 30%; */
     min-width: 200px;
@@ -56,7 +56,7 @@
 }
 .personal-details {
     /* border-bottom: 1px solid red; */
-    height: 190px;
+    height: 150px;
 }
 
 .actions {
@@ -79,6 +79,7 @@
     font-size: 20px !important;
     font-weight: 500;
     color: var(--blue);
+    text-transform: capitalize;
 }
 .title-key {
     display: flex;
@@ -116,41 +117,22 @@ p span {
     padding: 0px 5px;
     text-decoration: underline;
     color: var(--blue);
+    cursor: pointer;
 }
 
 .actions button:hover {
     color: var(--blue);
 }
 
-/* popup  design*/
-.modal {
-    padding: 0 !important;
-}
-.modal .modal-dialog {
-    width: 90%;
-    max-width: none;
-    height: 90%;
-    border: 1px solid var(--lightblack);
-    margin: 0 auto;
-    margin-top: 10px;
-}
-.modal .modal-content {
-    height: 100%;
-    border: 0;
-    border-radius: 0;
-}
-.modal .modal-body {
-    overflow-y: auto;
+.error-fetching {
+    font-size: 22px !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
-@media screen and (max-width: 584px) {
-    /* .search-box {
-        position: relative;
-        top: 10px;
-        left: 0;
-    }
-    .section-1 {
-        height: 60px;
-        border-bottom: none;
-    } */
+.modal .modal-medium {
+    height: 80%;
+    width: 60%;
 }
+

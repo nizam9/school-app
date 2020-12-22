@@ -1,11 +1,12 @@
 
 import userSchema from '../models/user-model';
-import employeeSchema from '../models/employee-model';
+import studentSchema from '../models/student-model';
+import feesSchema from '../models/fees-model';
 import passport from 'passport';
 import * as jwt from 'jsonwebtoken';
 import * as moment from 'moment';
-var secrets = require('../../../../config/keys');
-require('../../../../services/passport');
+var secrets = require('../../../config/keys');
+require('../../../services/passport');
 const UserCtrl = {};
 
 UserCtrl.login = (req, res, next) => {
@@ -29,9 +30,9 @@ UserCtrl.error = (req, res) => {
 }
 
 
-UserCtrl.register = (req, res) => {
+UserCtrl.userRegister = (req, res) => {
     console.log('inside register', req.body);
-    if(req.body.type === 'admin'){
+    if (req.body.type === 'admin') {
         var userDet = new userSchema({
             name: 'admin',
             email: 'admin@gmail.com',
@@ -54,45 +55,25 @@ UserCtrl.register = (req, res) => {
 
 }
 
-UserCtrl.registerEmployee = (req, res) => {
-
-    const employee = new employeeSchema({
-        email: req.body.email,
-        password: req.body.password,
-        username: req.body.username,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        gender: req.body.gender,
-        mobile: req.body.mobile,
-        address: req.body.address,
-        dateofbirth: req.body.dateofbirth,
-        joiningdate: req.body.joiningdate
-    });
-
-    employee.save((err, result) => {
-        console.log(result);
-        if (result) {
-            res.send({ code: 200, result: result, message: 'Employee added successfully' })
-        } else {
-            res.send({ code: 300, error: err, message: 'Error in adding Employee' })
-        }
-    })
+UserCtrl.addFees = (req, res) => {
+    console.log(req.body, '-----------------')
 }
 
-UserCtrl.getAllEmployees = (req, res) => {
-    employeeSchema.find().exec((err, results) => {
-        if (!err) {
-            res.send({ message: 'success', code: 200, data: results })
-        } else {
-            res.send({ message: 'failed to fetch employees', error: err, code: 300 })
-        }
-    })
-}
+
+
+
+// UserCtrl.getAllEmployees = (req, res) => {
+//     employeeSchema.find().exec((err, results) => {
+//         if (!err) {
+//             res.send({ message: 'success', code: 200, data: results })
+//         } else {
+//             res.send({ message: 'failed to fetch employees', error: err, code: 300 })
+//         }
+//     })
+// }
 
 //verify middleware function to check if correct token is sent in header of request for protected routes
 UserCtrl.verify = (req, res, next) => {
-    console.log(req.headers['x-access-token'], 'tttttttttttttttttt')
-
     try {
         const token = req.headers['x-access-token'].split(' ')[1];
         const decoded = jwt.verify(token, secrets.jwt_secret_key);

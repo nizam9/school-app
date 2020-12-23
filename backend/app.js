@@ -17,7 +17,7 @@ var app = express();
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => console.log('MongoDB Connected'))
 	.catch(err => console.log('Error in connecting to MongoDB: ', err));
-
+mongoose.set('useFindAndModify', false);
 // Allowed all origin request via CORS
 const corsOptions = {
 	origin: '*',

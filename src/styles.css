@@ -93,3 +93,13 @@ select {
 .modal .modal-body {
   overflow-y: auto;
 }
+
+/* table design */
+table {
+  border: 1px solid #dee2e6;
+  text-align: center;
+}
+thead {
+  background-color: grey;
+  color: white;
+}

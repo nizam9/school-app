@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { StudentService } from '../student.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
 
 
 @Component({
@@ -13,6 +14,8 @@ export class FeeDetailsComponent implements OnInit, OnChanges {
   @Input() studentId: any;
   @Input() closedFeePopup: string;
   @ViewChild('collapseTransactions') collapseTransactions: ElementRef;
+  @ViewChild('collapseMakePayment') collapseMakePayment: ElementRef;
+
   isUpdateFee: boolean = false;
   feeDetails: any;
   updateFeeForm: FormGroup
@@ -21,6 +24,7 @@ export class FeeDetailsComponent implements OnInit, OnChanges {
 
   constructor(private _studService: StudentService,
     private fb: FormBuilder,
+    private _notifier: NotifierService,
   ) {
     this.createFeeForm();
   }
@@ -39,17 +43,22 @@ export class FeeDetailsComponent implements OnInit, OnChanges {
       fees_id: ['']
     });
     this.updateFeeForm.valueChanges.subscribe((data) => {
-      // this._customValidation.validate(data, this.registerForm, this.registerFormFields, this.registerValidationMessages)
     });
   }
 
-  async updateFee() {
+  async updateFee(index) {
     this.updateValidationError = '';
     console.log(this.updateFeeForm.value.fees_id);
     if (this.updateFeeForm.valid) {
       this.isUpdateFee = false;
       const updatedData = await this._studService.updateFeesDetails(this.updateFeeForm.value.fees_id, this.updateFeeForm.value).toPromise();
       console.log(updatedData, 'updatedData');
+      if (updatedData && updatedData.code === 200) {
+        this.feeDetails.fee_id = updatedData.data;
+        this._notifier.notify("success", updatedData.message);
+      } else {
+        this._notifier.notify("error", updatedData.message);
+      }
     } else {
       this.updateValidationError = '*Please enter valid Numeric value';
     }
@@ -65,9 +74,9 @@ export class FeeDetailsComponent implements OnInit, OnChanges {
     }
     if (changes && changes.closedFeePopup && changes.closedFeePopup.currentValue) {
       this.collapseTransactions.nativeElement.click();
+      this.collapseMakePayment.nativeElement.click();
       this.updateValidationError = '';
       this.isUpdateFee = false;
-      // this.createFeeForm();
     }
   }
 
@@ -80,17 +89,19 @@ export class FeeDetailsComponent implements OnInit, OnChanges {
 
     if (studentFeesDetails.code === 200) {
       this.feeDetails = studentFeesDetails.data;
-      this.updateFeeForm.patchValue({
-        fees_id: this.feeDetails.fee_id._id,
-        donation: this.feeDetails.fee_id.donation,
-        termfee: this.feeDetails.fee_id.termfee,
-        amount_paid: this.feeDetails.fee_id.amount_paid,
-        balance_amount: this.feeDetails.fee_id.balance_amount,
-        no_of_installments: this.feeDetails.fee_id.no_of_installments
-      })
-      // console.log(this.feeDetails, 'studentFeesDetails');
+      this.patchFeeDetails(this.feeDetails.fee_id)
     }
   }
 
+  patchFeeDetails(feeDetails) {
+    this.updateFeeForm.patchValue({
+      fees_id: feeDetails._id,
+      donation: feeDetails.donation,
+      termfee: feeDetails.termfee,
+      amount_paid: feeDetails.amount_paid,
+      balance_amount: feeDetails.balance_amount,
+      no_of_installments: feeDetails.no_of_installments
+    })
+  }
 
 }

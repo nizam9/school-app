@@ -32,6 +32,7 @@ export class FormFields {
         amount_paid: '',
         balance_amount: '',
         no_of_installments: '',
+        paymentFor:'',
 
     }
 }

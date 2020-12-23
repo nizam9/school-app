@@ -58,6 +58,7 @@ studentCtrl.addFees = (req, res) => {
         amount_paid: req.body.amount_paid,
         balance_amount: req.body.balance_amount,
         no_of_installments: req.body.no_of_installments,
+        paymentFor: req.body.paymentFor,
         student_id: req.body.student_id
     };
 
@@ -110,16 +111,16 @@ studentCtrl.getFeesById = (req, res) => {
 
 studentCtrl.updateFeesbyId = (req, res) => {
     const fees_id = req.params.fee_id;
-    console.log(fees_id, ' fees_id' , req.body);
-    feesSchema.updateOne(({ _id: fees_id }, {
+    feesSchema.findOneAndUpdate({ _id: fees_id }, {
         $set: {
-            donation: req.body.donation,
-            termfee: req.body.termfee,
-            amount_paid: req.body.amount_paid,
-            balance_amount: req.body.balance_amount,
-            no_of_installments: req.body.no_of_installments,
+            'donation': req.body.donation,
+            'termfee': req.body.termfee,
+            'amount_paid': req.body.amount_paid,
+            'balance_amount': req.body.balance_amount,
+            'no_of_installments': req.body.no_of_installments,
+            'paymentFor': req.body.paymentFor
         }
-    })).exec((err, result) => {
+    }, { new: true }).exec((err, result) => {
         if (err) {
             res.send({ code: 300, error: err, message: 'Error in updating fees' })
         } else if (result) {
@@ -130,6 +131,10 @@ studentCtrl.updateFeesbyId = (req, res) => {
     })
 }
 
+studentCtrl.makePayment = (req,res) => {
+    
+
+}
 
 
 export default studentCtrl;

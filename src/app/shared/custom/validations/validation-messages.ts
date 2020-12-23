@@ -46,5 +46,6 @@ export class ValidationMessages {
         amount_paid: { required: 'Required', pattern: '' },
         balance_amount: { required: 'Required', pattern: '' },
         no_of_installments: { required: 'Required', pattern: '' },
+        paymentFor: { required: 'Required', pattern: '' }
     }
 }

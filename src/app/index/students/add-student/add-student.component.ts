@@ -61,6 +61,7 @@ export class AddStudentComponent implements OnInit {
       amount_paid: ['', []],
       balance_amount: ['', []],
       no_of_installments: [''],
+      paymentFor: ['']
     });
     this.registerForm.valueChanges.subscribe((data) => {
       this._customValidation.validate(data, this.registerForm, this.registerFormFields, this.registerValidationMessages)
@@ -89,6 +90,7 @@ export class AddStudentComponent implements OnInit {
             amount_paid: this.registerForm.get('amount_paid').value,
             balance_amount: this.registerForm.get('balance_amount').value,
             no_of_installments: this.registerForm.get('no_of_installments').value,
+            paymentFor: this.registerForm.get('paymentFor').value,
             student_id: res.data._id
           }
           this.addStudentFee(feeStructureDet);

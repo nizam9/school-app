@@ -174,9 +174,9 @@
                         <label class="control-label" for="address">Address</label>
                         <input type="text" id="address" placeholder="Address" formControlName="address"
                             class="form-control form-control-sm">
-                            <small *ngIf="registerFormFields.address" class="alerterror">
-                                <span class="alert-error">{{registerFormFields.address}}</span>
-                            </small>
+                        <small *ngIf="registerFormFields.address" class="alerterror">
+                            <span class="alert-error">{{registerFormFields.address}}</span>
+                        </small>
                     </div>
                 </div>
 
@@ -214,6 +214,22 @@
                         </div>
                     </div>
                     <div class="col-md-3">
+                        <div class="form-group required">
+                            <label class="control-label" for="paymentFor">Payment For</label>
+                            <select class="form-control form-control-sm" id="paymentFor" formControlName="paymentFor">
+                                <option selected>Select</option>
+                                <option value="donation_amount">Donation</option>
+                                <option value="fee_amount">Fee Amount</option>
+                            </select>
+                            <small *ngIf="registerFormFields.paymentFor" class="alerterror">
+                                <span class="alert-error">{{registerFormFields.paymentFor}}</span>
+                            </small>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
                         <div class="form-group ">
                             <label class="control-label" for="balance">Balance</label>
                             <input type="text" id="balance" placeholder="Balance" formControlName="balance_amount"
@@ -223,8 +239,6 @@
                             </small>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="installments">No. of installments</label>
@@ -235,7 +249,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <p class="legend-cls other-det" data-toggle="collapse" href="#otherDetails">Other Details</p>
         <div class="collapse" id="otherDetails">
